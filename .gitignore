@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDEs
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Flask / instance config
+instance/*.py
+instance/*.cfg
+instance/*.ini
+
+# Logs
+*.log
+
+# Test caches
+*.pytest_cache/
+coverage/
+
+# Bytecode and compiled files
+*.so
+
+# Pip freeze lock
+Pipfile.lock
+poetry.lock
