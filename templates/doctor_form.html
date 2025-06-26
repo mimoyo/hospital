@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>{{ 'Редактировать' if doctor else 'Добавить' }} врача</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">ФИО</label>
+        <input type="text" name="full_name" class="form-control" value="{{ doctor.full_name if doctor else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Специальность</label>
+        <input type="text" name="specialty" class="form-control" value="{{ doctor.specialty if doctor else '' }}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Категория</label>
+        <input type="text" name="category" class="form-control" value="{{ doctor.category if doctor else '' }}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Стаж (лет)</label>
+        <input type="number" name="experience_years" class="form-control" value="{{ doctor.experience_years if doctor else '' }}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Отделение</label>
+        <select name="department_id" class="form-select">
+            <option value="">-- Не выбрано --</option>
+            {% for dep in departments %}
+            <option value="{{ dep.id }}" {% if doctor and doctor.department_id == dep.id %}selected{% endif %}>{{ dep.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Телефон</label>
+        <input type="text" name="phone" class="form-control" value="{{ doctor.phone if doctor else '' }}">
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="/doctors" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

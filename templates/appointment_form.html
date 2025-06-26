@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Добавить приём</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Пациент</label>
+        <select name="patient_id" class="form-select" required>
+            {% for p in patients %}
+            <option value="{{ p.id }}">{{ p.full_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Врач</label>
+        <select name="doctor_id" class="form-select" required>
+            {% for d in doctors %}
+            <option value="{{ d.id }}" selected>{{ d.full_name }} - {{ d.specialty }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Дата</label>
+        <input type="date" name="appointment_date" class="form-control" value="{{ appointment.appointment_date if appointment else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Время</label>
+        <input type="time" name="appointment_time" class="form-control" value="{{ appointment.appointment_time if appointment else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Кабинет</label>
+        <input type="text" name="room_number" class="form-control" value="{{ appointment.room_number if appointment else '' }}" required>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="/appointments" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

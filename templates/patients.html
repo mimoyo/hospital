@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Список пациентов</h2>
+<a href="/patients/new" class="btn btn-primary mb-3">Добавить пациента</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>Дата рождения</th>
+            <th>Пол</th>
+            <th>Телефон</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patients %}
+        <tr>
+            <td>{{ patient.full_name }}</td>
+            <td>{{ patient.birth_date }}</td>
+            <td>{{ patient.gender }}</td>
+            <td>{{ patient.phone }}</td>
+            <td>
+                <a href="/patients/{{ patient.id }}/edit" class="btn btn-warning btn-sm">✏️</a>
+                <a href="/patients/{{ patient.id }}/delete" class="btn btn-danger btn-sm">🗑</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>{{ 'Редактировать' if department else 'Добавить' }} отделение</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Название</label>
+        <input type="text" name="name" class="form-control" value="{{ department.name if department else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Этаж</label>
+        <input type="number" name="floor" class="form-control" value="{{ department.floor if department else '' }}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Телефон</label>
+        <input type="text" name="phone" class="form-control" value="{{ department.phone if department else '' }}">
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="/departments" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

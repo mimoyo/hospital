@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Отделения</h2>
+<a href="/departments/new" class="btn btn-primary mb-3">Добавить отделение</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Этаж</th>
+            <th>Телефон</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dep in departments %}
+        <tr>
+            <td>{{ dep.name }}</td>
+            <td>{{ dep.floor }}</td>
+            <td>{{ dep.phone }}</td>
+            <td>
+                <a href="/departments/{{ dep.id }}/edit" class="btn btn-sm btn-warning">✏️</a>
+                <a href="/departments/{{ dep.id }}/delete" class="btn btn-sm btn-danger">🗑</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

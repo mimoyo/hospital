@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Приёмы</h2>
+<a href="/appointments/new" class="btn btn-primary mb-3">Добавить приём</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Пациент</th>
+            <th>Врач</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Кабинет</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in appointments %}
+        <tr>
+            <td>{{ a.patient.full_name }}</td>
+            <td>{{ a.doctor.full_name }} - {{  a.doctor.specialty }}</td>
+            <td>{{ a.appointment_date }}</td>
+            <td>{{ a.appointment_time.strftime('%H:%M') }}</td>
+            <td>{{ a.room_number }}</td>
+            <td>
+                <a href="/appointments/{{ a.id }}/edit" class="btn btn-sm btn-warning">✏️</a>
+                <a href="/appointments/{{ a.id }}/delete" class="btn btn-sm btn-danger">🗑</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
