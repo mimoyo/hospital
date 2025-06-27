@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>Отчёт: Назначения по пациентам</h2>
+<button onclick="window.print()" class="btn btn-outline-secondary mb-3">Сохранить как PDF</button>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Пациент</th>
+            <th>Количество назначений</th>
+            <th>Сумма (₽)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for name, count, total in data %}
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ count }}</td>
+            <td>{{ total }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

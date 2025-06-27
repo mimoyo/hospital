@@ -1,0 +1,51 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+h2 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.table {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.table th {
+    background-color: #343a40;
+    color: white;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.btn {
+    font-weight: 500;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+}
+
+.card {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.card-text {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.alert {
+    font-size: 1rem;
+    border-radius: 10px;
+}

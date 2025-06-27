@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>Отчёт: Приёмы по врачам</h2>
+
+<button onclick="window.print()" class="btn btn-outline-secondary mb-3">Сохранить как PDF</button>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Врач</th>
+            <th>Количество приёмов</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for name, count in data %}
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
