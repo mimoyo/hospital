@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, Appointment, Department, Doctor, Patient
 from datetime import datetime
+from modules import register_blueprints
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clinic.db'
@@ -13,6 +14,7 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+register_blueprints(app)
 
 # ========== Главная страница ==========
 @app.route('/')
@@ -73,59 +75,7 @@ def delete_patient(patient_id):
     return redirect(url_for('list_patients'))
 
 
-# ===== Врачи =====
-@app.route('/doctors')
-def list_doctors():
-    doctors = Doctor.query.all()
-    return render_template('doctors.html', doctors=doctors)
 
-
-# ===== Добавить врача =====
-@app.route('/doctors/new', methods=['GET', 'POST'])
-def add_doctor():
-    departments = Department.query.all()
-    if request.method == 'POST':
-        department_id = request.form['department_id']
-        doctor = Doctor(
-            full_name=request.form['full_name'],
-            specialty=request.form['specialty'],
-            category=request.form['category'],
-            experience_years=request.form['experience_years'],
-            phone=request.form['phone'],
-            department_id=int(department_id) if department_id else None
-        )
-        db.session.add(doctor)
-        db.session.commit()
-        flash('Врач добавлен!')
-        return redirect(url_for('list_doctors'))
-    return render_template('doctor_form.html', doctor=None, departments=departments)
-
-# ===== Изменить врача =====
-@app.route('/doctors/<int:doctor_id>/edit', methods=['GET', 'POST'])
-def edit_doctor(doctor_id):
-    doctor = Doctor.query.get_or_404(doctor_id)
-    departments = Department.query.all()
-    if request.method == 'POST':
-        doctor.full_name = request.form['full_name']
-        doctor.specialty = request.form['specialty']
-        doctor.category = request.form['category']
-        doctor.experience_years = request.form['experience_years']
-        doctor.phone = request.form['phone']
-        department_id = request.form['department_id']
-        doctor.department_id = int(department_id) if department_id else None
-        db.session.commit()
-        flash('Информация о враче обновлена!')
-        return redirect(url_for('list_doctors'))
-    return render_template('doctor_form.html', doctor=doctor, departments=departments)
-
-# ===== Удалить врача =====
-@app.route('/doctors/<int:doctor_id>/delete')
-def delete_doctor(doctor_id):
-    doctor = Doctor.query.get_or_404(doctor_id)
-    db.session.delete(doctor)
-    db.session.commit()
-    flash('Врач удалён!')
-    return redirect(url_for('list_doctors'))
 
 # ===== Приёмы =====
 @app.route('/appointments')
