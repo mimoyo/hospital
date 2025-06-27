@@ -23,7 +23,6 @@ class Doctor(db.Model):
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
 
     appointments = db.relationship('Appointment', backref='doctor', lazy=True)
-    schedules = db.relationship('Schedule', backref='doctor', lazy=True)
 
 class Patient(db.Model):
     __tablename__ = 'patients'

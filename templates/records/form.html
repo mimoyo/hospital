@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>{{ 'Редактировать' if record else 'Добавить' }} запись</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Пациент</label>
+        <select name="patient_id" class="form-select" required>
+            {% for p in patients %}
+            <option value="{{ p.id }}" {% if record and record.patient_id == p.id %}selected{% endif %}>{{ p.full_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Диагноз</label>
+        <select name="diagnosis_id" class="form-select" required>
+            {% for d in diagnoses %}
+            <option value="{{ d.id }}" {% if record and record.diagnosis_id == d.id %}selected{% endif %}>{{ d.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Дата</label>
+        <input type="date" name="date" class="form-control" value="{{ record.date if record else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Заметки</label>
+        <textarea name="notes" class="form-control">{{ record.notes if record else '' }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="/records" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}
