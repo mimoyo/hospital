@@ -25,7 +25,6 @@ class Doctor(db.Model):
     appointments = db.relationship('Appointment', backref='doctor', lazy=True)
     schedules = db.relationship('Schedule', backref='doctor', lazy=True)
 
-
 class Patient(db.Model):
     __tablename__ = 'patients'
     id = db.Column(db.Integer, primary_key=True)
@@ -48,16 +47,6 @@ class Appointment(db.Model):
     appointment_date = db.Column(db.Date)
     appointment_time = db.Column(db.Time)
     room_number = db.Column(db.String(10))
-
-
-class Schedule(db.Model):
-    __tablename__ = 'schedules'
-    id = db.Column(db.Integer, primary_key=True)
-    doctor_id = db.Column(db.Integer, db.ForeignKey('doctors.id'))
-    weekday = db.Column(db.String(20))
-    start_time = db.Column(db.Time)
-    end_time = db.Column(db.Time)
-
 
 class Diagnosis(db.Model):
     __tablename__ = 'diagnoses'
