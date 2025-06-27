@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>{{ 'Редактировать' if prescription else 'Добавить' }} назначение</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">История болезни</label>
+        <select name="history_id" class="form-select" required>
+            {% for r in records %}
+            <option value="{{ r.id }}" {% if prescription and prescription.history_id == r.id %}selected{% endif %}>
+                {{ r.patient.full_name }} — {{ r.diagnosis.name }} ({{ r.date }})
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Услуга</label>
+        <select name="service_id" class="form-select" required>
+            {% for s in services %}
+            <option value="{{ s.id }}" {% if prescription and prescription.service_id == s.id %}selected{% endif %}>
+                {{ s.name }} ({{ s.price }})
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Количество</label>
+        <input type="number" name="quantity" class="form-control" value="{{ prescription.quantity if prescription else '' }}" required>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="/prescriptions" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

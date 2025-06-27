@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>Назначения врача</h2>
+<a href="/prescriptions/new" class="btn btn-primary mb-3">Добавить назначение</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Пациент</th>
+            <th>Диагноз</th>
+            <th>Услуга</th>
+            <th>Кол-во</th>
+            <th>Сумма</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in prescriptions %}
+        <tr>
+            <td>{{ p.medical_record.patient.full_name }}</td>
+            <td>{{ p.medical_record.diagnosis.name }}</td>
+            <td>{{ p.service.name }}</td>
+            <td>{{ p.quantity }}</td>
+            <td>{{ p.total_price }}</td>
+            <td>
+                <a href="/prescriptions/{{ p.id }}/edit" class="btn btn-sm btn-warning">✏️</a>
+                <a href="/prescriptions/{{ p.id }}/delete" class="btn btn-sm btn-danger">🗑</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

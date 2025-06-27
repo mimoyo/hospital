@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>Справочник диагнозов</h2>
+<a href="/diagnosis/new" class="btn btn-primary mb-3">Добавить диагноз</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Код</th>
+            <th>Наименование</th>
+            <th>Описание</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for diag in diagnoses %}
+        <tr>
+            <td>{{ diag.code }}</td>
+            <td>{{ diag.name }}</td>
+            <td>{{ diag.description }}</td>
+            <td>
+                <a href="/diagnosis/{{ diag.id }}/edit" class="btn btn-sm btn-warning">✏️</a>
+                <a href="/diagnosis/{{ diag.id }}/delete" class="btn btn-sm btn-danger">🗑</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

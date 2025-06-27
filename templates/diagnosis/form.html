@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>{{ 'Редактировать' if diagnosis else 'Добавить' }} диагноз</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Код</label>
+        <input type="text" name="code" class="form-control" value="{{ diagnosis.code if diagnosis else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Наименование</label>
+        <input type="text" name="name" class="form-control" value="{{ diagnosis.name if diagnosis else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Описание</label>
+        <textarea name="description" class="form-control">{{ diagnosis.description if diagnosis else '' }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="/diagnoses" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}
