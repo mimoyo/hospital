@@ -19,10 +19,17 @@ class Doctor(db.Model):
     specialty = db.Column(db.String(100))
     experience_years = db.Column(db.Integer)
     phone = db.Column(db.String(20))
-    category = db.Column(db.String(50))
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
 
     appointments = db.relationship('Appointment', backref='doctor', lazy=True)
+
+class Category(db.Model):
+    __tablename__ = 'categories'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+
+    doctors = db.relationship('Doctor', backref='category', lazy=True)
 
 class Patient(db.Model):
     __tablename__ = 'patients'

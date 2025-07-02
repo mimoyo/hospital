@@ -19,7 +19,7 @@
         <tr>
             <td>{{ doctor.full_name }}</td>
             <td>{{ doctor.specialty }}</td>
-            <td>{{ doctor.category }}</td>
+            <td>{{ doctor.category.name if doctor.category else '' }}</td>
             <td>{{ doctor.experience_years }}</td>
             <td>{{ doctor.department.name }}</td>
             <td>{{ doctor.phone }}</td>
