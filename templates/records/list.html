@@ -15,7 +15,7 @@
     <tbody>
         {% for rec in records %}
         <tr>
-            <td>{{ rec.patient.full_name }}</td>
+            <td>{{ rec.patient.last_name }} {{ rec.patient.first_name }} {{ rec.patient.middle_name }}</td>
             <td>{{ rec.diagnosis.name }}</td>
             <td>{{ rec.date.strftime('%Y-%m-%d') }}</td>
             <td>{{ rec.notes }}</td>

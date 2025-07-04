@@ -16,8 +16,8 @@
     <tbody>
         {% for a in appointments %}
         <tr>
-            <td>{{ a.patient.full_name }}</td>
-            <td>{{ a.doctor.full_name }} - {{  a.doctor.specialty }}</td>
+            <td>{{ a.patient.last_name }} {{ a.patient.first_name }} {{ a.patient.middle_name }}</td>
+            <td>{{ a.doctor.last_name }} {{ a.doctor.first_name }} {{ a.doctor.middle_name }} - {{  a.doctor.specialty }}</td>
             <td>{{ a.appointment_date }}</td>
             <td>{{ a.appointment_time.strftime('%H:%M') }}</td>
             <td>{{ a.room_number }}</td>

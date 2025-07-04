@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>Отчёт: Диагнозы по пациенту за определенный период</h2>
+
+<form method="POST" class="row mb-3">
+  <div class="col-md-4">
+    <label class="form-label">Пациент</label>
+    <select name="patient_id" class="form-select" required>
+      {% for p in patients %}
+      <option value="{{ p.id }}">{{ p.last_name }} {{ p.first_name }} {{ p.middle_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">С даты</label>
+    <input type="date" name="start_date" class="form-control" required>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">По дату</label>
+    <input type="date" name="end_date" class="form-control" required>
+  </div>
+  <div class="col-md-2 align-self-end">
+    <button type="submit" class="btn btn-primary w-100">Показать</button>
+  </div>
+</form>
+
+{% if results %}
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>Код</th>
+      <th>Диагноз</th>
+      <th>Примечание</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for name, code, date, notes in results %}
+    <tr>
+      <td>{{ date }}</td>
+      <td>{{ code }}</td>
+      <td>{{ name }}</td>
+      <td>{{ notes }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

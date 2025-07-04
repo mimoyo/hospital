@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template
-from models import db, Patient, Prescription, MedicalRecord, Appointment, Doctor
+from flask import Blueprint, render_template, request
+from models import db, Patient, Prescription, MedicalRecord, Appointment, Doctor, Diagnosis
 from sqlalchemy import func
 
 reports_bp = Blueprint('reports', __name__)
@@ -24,3 +24,27 @@ def report_doctor_appointments():
     ).join(Appointment).group_by(Doctor.full_name).all()
 
     return render_template('reports/doctor_appointments/report_doctor_appointments.html', data=results)
+
+@reports_bp.route('/reports/diagnosis_by_period', methods=['GET', 'POST'])
+def report_diagnosis_by_period():
+    patients = Patient.query.all()
+    results = []
+
+    if request.method == 'POST':
+        patient_id = request.form['patient_id']
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']
+
+        results = db.session.query(
+            Diagnosis.name,
+            Diagnosis.code,
+            MedicalRecord.date,
+            MedicalRecord.notes
+        ).join(MedicalRecord.diagnosis
+        ).filter(
+            MedicalRecord.patient_id == patient_id,
+            MedicalRecord.date.between(start_date, end_date)
+        ).all()
+
+    return render_template('reports/diagnosis_by_period/report_diagnosis_by_period.html', patients=patients, results=results)
+
