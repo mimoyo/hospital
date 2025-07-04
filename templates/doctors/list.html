@@ -5,7 +5,9 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>ФИО</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
             <th>Специальность</th>
             <th>Категория</th>
             <th>Стаж (лет)</th>
@@ -17,7 +19,9 @@
     <tbody>
         {% for doctor in doctors %}
         <tr>
-            <td>{{ doctor.full_name }}</td>
+            <td>{{ doctor.last_name }}</td>
+            <td>{{ doctor.first_name }}</td>
+            <td>{{ doctor.middle_name }}</td>
             <td>{{ doctor.specialty }}</td>
             <td>{{ doctor.category.name if doctor.category else '' }}</td>
             <td>{{ doctor.experience_years }}</td>

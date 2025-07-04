@@ -19,7 +19,9 @@ def add_doctor():
     if request.method == 'POST':
         department_id = request.form['department_id']
         doctor = Doctor(
-            full_name=request.form['full_name'],
+            last_name = request.form['last_name'],
+            first_name = request.form['first_name'],
+            middle_name = request.form['middle_name'],
             specialty=request.form['specialty'],
             experience_years=request.form['experience_years'],
             phone=request.form['phone'],
@@ -39,7 +41,9 @@ def edit_doctor(doctor_id):
     departments = Department.query.all()
     categories = Category.query.all()
     if request.method == 'POST':
-        doctor.full_name = request.form['full_name']
+        doctor.last_name = request.form['last_name']
+        doctor.first_name = request.form['first_name']
+        doctor.middle_name = request.form['middle_name']
         doctor.specialty = request.form['specialty']
         doctor.experience_years = request.form['experience_years']
         doctor.phone = request.form['phone']

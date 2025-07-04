@@ -26,7 +26,9 @@ def add_patient():
         birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d').date() if birth_date_str else None
 
         new_patient = Patient(
-            full_name=request.form['full_name'],
+            last_name=request.form['last_name'],
+            first_name=request.form['first_name'],
+            middle_name=request.form['middle_name'],
             birth_date=birth_date,
             gender=request.form['gender'],
             phone=request.form['phone'],
@@ -43,7 +45,9 @@ def add_patient():
 def edit_patient(patient_id):
     patient = Patient.query.get_or_404(patient_id)
     if request.method == 'POST':
-        patient.full_name = request.form['full_name']
+        patient.last_name = request.form['last_name']
+        patient.first_name = request.form['first_name']
+        patient.middle_name = request.form['middle_name']
         birth_date_str = request.form['birth_date']
         patient.birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d').date() if birth_date_str else None
         patient.gender = request.form['gender']

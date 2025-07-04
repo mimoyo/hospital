@@ -15,7 +15,9 @@ class Department(db.Model):
 class Doctor(db.Model):
     __tablename__ = 'doctors'
     id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    first_name = db.Column(db.String(50), nullable=False)
+    middle_name = db.Column(db.String(50))
     specialty = db.Column(db.String(100))
     experience_years = db.Column(db.Integer)
     phone = db.Column(db.String(20))
@@ -34,12 +36,12 @@ class Category(db.Model):
 class Patient(db.Model):
     __tablename__ = 'patients'
     id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    first_name = db.Column(db.String(50), nullable=False)
+    middle_name = db.Column(db.String(50))
     birth_date = db.Column(db.Date)
     gender = db.Column(db.String(10))
     phone = db.Column(db.String(20))
-    address = db.Column(db.Text)
-    insurance_number = db.Column(db.String(30))
 
     appointments = db.relationship('Appointment', backref='patient', lazy=True)
     medical_records = db.relationship('MedicalRecord', backref='patient', lazy=True)

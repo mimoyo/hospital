@@ -3,8 +3,16 @@
 <h2>{{ 'Редактировать' if patient else 'Добавить' }} пациента</h2>
 <form method="POST">
     <div class="mb-3">
-        <label class="form-label">ФИО</label>
-        <input type="text" name="full_name" class="form-control" value="{{ patient.full_name if patient else '' }}" required>
+      <label class="form-label">Фамилия</label>
+      <input type="text" name="last_name" class="form-control" value="{{ patient.last_name if patient else '' }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Имя</label>
+      <input type="text" name="first_name" class="form-control" value="{{ patient.first_name if patient else '' }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Отчество</label>
+      <input type="text" name="middle_name" class="form-control" value="{{ patient.middle_name if patient else '' }}">
     </div>
     <div class="mb-3">
         <label class="form-label">Дата рождения</label>
