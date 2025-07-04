@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>Главная панель</h2>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card text-white bg-primary mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Пациентов</h5>
+        <p class="card-text display-4">{{ total_patients }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-white bg-success mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Приёмов</h5>
+        <p class="card-text display-4">{{ total_appointments }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-white bg-info mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Услуг</h5>
+        <p class="card-text display-4">{{ total_services }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4 class="mt-4">Быстрые переходы</h4>
+<div class="list-group">
+  <a href="{{ url_for('patients.list_patients') }}" class="list-group-item list-group-item-action">Пациенты</a>
+  <a href="{{ url_for('doctors.list_doctors') }}" class="list-group-item list-group-item-action">Врачи</a>
+  <a href="{{ url_for('appointments.list_appointments') }}" class="list-group-item list-group-item-action">Приёмы</a>
+  <a href="{{ url_for('reports.report_diagnosis_by_period') }}" class="list-group-item list-group-item-action">Отчёт по диагнозам</a>
+</div>
+{% endblock %}

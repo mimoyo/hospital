@@ -5,12 +5,6 @@ from models import db, Patient
 
 patients_bp = Blueprint('patients', __name__)
 
-# ========== Главная страница ==========
-@patients_bp.route('/')
-def index():
-    return redirect(url_for('patients.list_patients'))
-
-
 # ========== Список пациентов ==========
 @patients_bp.route('/patients')
 def list_patients():
