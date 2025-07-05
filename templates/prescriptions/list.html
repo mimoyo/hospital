@@ -16,9 +16,14 @@
     <tbody>
         {% for p in prescriptions %}
         <tr>
-            <td>{{ p.medical_record.patient.full_name }}</td>
-            <td>{{ p.medical_record.diagnosis.name }}</td>
-            <td>{{ p.service.name }}</td>
+            <td>  {% if p.medical_record and p.medical_record.patient %}
+                     {{ p.medical_record.patient.last_name }} {{ p.medical_record.patient.first_name }} {{ p.medical_record.patient.middle_name }}
+                      {% else %}
+                        -
+                    {% endif %}
+            </td>
+            <td>{{ p.medical_record.diagnosis.name if p.medical_record and p.medical_record.diagnosis else '-' }}</td>
+            <td> {{ p.service.name if p.service else '-' }}</td>
             <td>{{ p.quantity }}</td>
             <td>{{ p.total_price }}</td>
             <td>

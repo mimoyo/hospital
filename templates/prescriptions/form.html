@@ -7,7 +7,7 @@
         <select name="history_id" class="form-select" required>
             {% for r in records %}
             <option value="{{ r.id }}" {% if prescription and prescription.history_id == r.id %}selected{% endif %}>
-                {{ r.patient.full_name }} — {{ r.diagnosis.name }} ({{ r.date }})
+                {{ r.patient.last_name }} {{ r.patient.first_name }} {{ r.patient.middle_name }} — {{ r.diagnosis.name }} ({{ r.date }})
             </option>
             {% endfor %}
         </select>

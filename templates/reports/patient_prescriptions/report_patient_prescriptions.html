@@ -11,9 +11,9 @@
         </tr>
     </thead>
     <tbody>
-        {% for name, count, total in data %}
+        {% for last_name, first_name, middle_name, count, total in data %}
         <tr>
-            <td>{{ name }}</td>
+            <td>{{ last_name }} {{ first_name }} {{ middle_name }}</td>
             <td>{{ count }}</td>
             <td>{{ total }}</td>
         </tr>
